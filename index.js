@@ -40,9 +40,6 @@ app.use(passport.session())
 //req comes from the visit to '/'
 //then response is sent
 
-//call authRoutes function
-authRoutes(app)
-//could also do this without the import require statement above
 require('./routes/authRoutes')(app)
 require('./routes/productRoutes')(app)
 require('./routes/cartRoutes')(app)
