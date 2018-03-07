@@ -38,7 +38,7 @@ class  App extends Component {
         <StyleRoot>
           <div>
             <BrowserRouter>
-              <div>
+              <div style={styles.div}>
                 <PromoBar/>
                 <Navbar/>
                 {/*<Header/>*/}
@@ -61,3 +61,10 @@ class  App extends Component {
 //this is imported by main index.js
 
 export default connect(null, actions)(App)
+
+const styles={
+  div:{
+    display:'flex',
+    flexDirection:'column'
+  }
+}

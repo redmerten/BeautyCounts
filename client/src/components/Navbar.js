@@ -5,21 +5,57 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Icon} from 'react-fa'
 import Radium from 'radium'
+import Menu, { MenuItem } from 'material-ui/Menu';
+import Fade from 'material-ui/transitions/Fade';
 
 const links=[
-  {link:"/productList/skinCare", label:'SKIN CARE'},
-  {link:"/productList/makeUp", label:'MAKE UP'},
-  {link:"/productList/bathbody", label:'BATH & BODY'},
-  {link:"/productList/family", label:'FAMILY'},
-  {link:"/productList/new", label:'NEW'},
-  {link:"/productList/theNeverList", label:'THE NEVER LIST'},
-  {link:"/productList/ourStory", label:'OUR STORY'},
-  {link:"/productList/blog", label: 'THE ASTERISK BLOG'},
+  {link:"/productList/skinCare", label:'SKIN CARE',
+    menuItems:
+      ['Cleansers',
+      'Toners & Mists',
+      'Masks',
+      'Moisturizers',
+      'Face Oils & Serums',
+      'Eye & Lip Care',
+      'Sun Protection',
+      'Sets & Collection']
+  },
+  // {link:"/productList/makeUp", label:'MAKE UP'},
+  // {link:"/productList/bathbody", label:'BATH & BODY'},
+  // {link:"/productList/family", label:'FAMILY'},
+  // {link:"/productList/new", label:'NEW'},
+  // {link:"/productList/theNeverList", label:'THE NEVER LIST'},
+  // {link:"/productList/ourStory", label:'OUR STORY'},
+  // {link:"/productList/blog", label: 'THE ASTERISK BLOG'},
 
 ]
 
 class Navbar extends Component{
+
+  state={
+    menuOpen:false,
+    anchorEl: null,
+  }
+
+  openMenu=(e)=>{
+    this.setState({menuOpen:true, anchorEl: e.currentTarget})
+  }
+
+  closeMenu=()=>{
+    this.setState({menuOpen:false, anchorEl: null})
+
+  }
+
+  handleMenuClick=(i)=>{
+
+  }
+
+  linkTo=()=>{
+
+  }
+
   render(){
+    console.log('open?', this.state.menuOpen)
     return(
       <div style={styles.mainDiv}>
         <div style={styles.topDiv}>
@@ -46,13 +82,45 @@ class Navbar extends Component{
         </div>
 
         <div style={styles.bottomDiv}>
-          {links.map((e,i)=>{
+          {links.map((l,i)=>{
             return(
-              <Link to={e.link} style={styles.bottomlinks}>
-                <button style={styles.bottomButton} key={e.label}>
-                  {e.label}
+              <div key={l.label}>
+                <button
+                  style={styles.bottomButton}
+                  key={l.label}
+                  //onClick={this.linkTo}
+                  onMouseEnter={(e)=>this.openMenu(e)}
+                  //onMouseLeave={()=>this.closeMenu()}
+                >
+                  {l.label}
                 </button>
-              </Link>
+                <Menu
+                  id="fade-menu"
+                  anchorEl={this.state.anchorEl}
+                  open={this.state.menuOpen}
+                  onClose={()=>this.closeMenu()}
+                  transition={Fade}
+                >
+                  <MenuItem>
+                    <Link
+                      to={{ pathname: '/productList/all', state: { type: 'all'} }}
+                      onClick={()=>this.closeMenu()}
+                    >
+                      {l.label}
+                    </Link>
+                  </MenuItem>
+                  {l.menuItems.map((m,i)=>{
+                    return(
+                      <MenuItem
+                        onClick={(i)=>this.handleMenuClick(i)}
+                        key={m}
+                      >
+                        {m}
+                      </MenuItem>
+                    )})}
+
+                </Menu>
+              </div>
             )
           })}
 
@@ -71,7 +139,7 @@ const styles={
     //height:'20%',
     //paddingTop:'30px',
     position: 'fixed',
-    top: '50px',
+    top: '30px',
     width:'100%',
     zIndex: 999,
     backgroundColor:'white',
@@ -81,7 +149,7 @@ const styles={
     display:'flex',
     justifyContent:'space-between',
     alignItems:'flex-start',
-    margin:'0% 2%',
+    margin:'2% 2% 0% 2%',
 
   },
   topLeftDiv:{

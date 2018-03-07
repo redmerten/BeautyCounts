@@ -7,7 +7,7 @@
 
 import {FETCH_USER, FETCH_PRODUCTS, FETCH_IMAGE,
 FETCH_DETAIL, ADD_TO_CART, GET_CART, UPDATE_CART_QUANTITY,
-EDIT_CART, REMOVE_ITEM} from './types'
+EDIT_CART, REMOVE_ITEM, FETCH_BC_PRODUCTS} from './types'
 
 import axios from 'axios'
 
@@ -44,6 +44,14 @@ export const  fetchProducts = (type) => async dispatch => {
   )
   //get back array of data
   dispatch({ type: FETCH_PRODUCTS, payload: res.data})
+}
+
+export const  fetchBDProducts = (subtype) => async dispatch => {
+  const res = await axios.get('/api/beautyCounter',
+    {params: {subtype}}
+  )
+  //get back array of data
+  dispatch({ type: FETCH_BC_PRODUCTS, payload: res.data})
 }
 
 export const fetchImage = () => async dispatch => {

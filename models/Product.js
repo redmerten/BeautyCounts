@@ -23,6 +23,8 @@ const productSchema = new Schema ({
   headline: String, //BEST SELLER
   //itemNumber: Number, //3027
   price: Number,
+  image:String,
+  id:String,
   description: String,
   partOfPackage:String, //Flawless in Five
   newLabel:String, //NEW SHADE

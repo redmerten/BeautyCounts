@@ -11,6 +11,7 @@ import imageReducer from './imageReducer'
 import prodDetailReducer from './prodDetailReducer'
 import cartReducer from './cartReducer'
 import cartQuantityReducer from './cartQuantityReducer'
+import bcProductReducer from './bcProductReducer'
 
 
 //this is imported by main index.js
@@ -21,5 +22,6 @@ export default combineReducers({
   images: imageReducer,
   detail: prodDetailReducer,
   cart: cartReducer,
-  cartQuantity: cartQuantityReducer
+  cartQuantity: cartQuantityReducer,
+  bcProducts:bcProductReducer
 })

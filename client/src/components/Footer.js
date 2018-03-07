@@ -25,7 +25,7 @@ export default () => {
 
 
   return(
-    <div style = {{'clear':'both','paddingTop':'30px', 'marginLeft':'10px', 'width':'960px'}}>
+    <div style = {{'clear':'both','paddingTop':'300px', 'marginLeft':'10px', 'width':'960px'}}>
       <ul style={footerMenuStyle}>
         <strong>Customer Service</strong>
         {footerMenu(csItems)}

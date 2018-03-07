@@ -41,6 +41,7 @@ module.exports = (app) => {
   app.get('/api/beautyCounter', async (req,res) =>{
 
     const products = await Product.find({'subtype':req.query.subtype})
+    console.log('products',products)
     res.send(products)
     })
 

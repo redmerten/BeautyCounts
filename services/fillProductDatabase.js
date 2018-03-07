@@ -13,6 +13,8 @@ module.exports = () => {
     headline: 'BEST SELLER', //BEST SELLER
     //itemNumber: Number, //3027
     price: 25,
+    image:"https://cdn.beautycounter.com/media/catalog/product/cache/1/image/380x645/0dc2d03fe217f8c83829496872af24a0/p/d/pdp_charcoalcleansingbar_selling-shot_528_613.jpg",
+    id:3027,
     description: 'Our Charcoal Cleansing Bar detoxifies and absorbs impurities in your skin without drying it out, resulting in a smoother, brighter complexion. Made with antioxidant-rich, organic green tea and hydrating organic coconut oil, the gentle formula can be used daily on your face and body.',
     partOfPackage:'', //Flawless in Five
     newLabel:'', //NEW SHADE
