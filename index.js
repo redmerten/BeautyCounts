@@ -41,7 +41,7 @@ app.use(passport.session())
 //then response is sent
 
 //call authRoutes function
-//authRoutes(app)
+authRoutes(app)
 //could also do this without the import require statement above
 require('./routes/authRoutes')(app)
 require('./routes/productRoutes')(app)
