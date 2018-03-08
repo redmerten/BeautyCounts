@@ -48,7 +48,7 @@ class  App extends Component {
                 <Route path="/cleanSwap" component={CleanSwap}></Route>
                 <Route path="/productList/:type" component={ProductList}></Route>
 
-                <Footer/>
+                {/*<Footer/>*/}
               </div>
             </BrowserRouter>
           </div>
