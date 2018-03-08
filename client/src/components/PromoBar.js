@@ -121,7 +121,7 @@ const styles={
   p:{
     color:'white',
     fontFamily:'Helvetica,Arial,sans-serif',
-    fontSize:'150%',
+    fontSize:'125%',
     textDecoration: 'none',
     textTransform: 'uppercase',
     height:'50px',

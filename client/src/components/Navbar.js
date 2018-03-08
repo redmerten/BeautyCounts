@@ -169,7 +169,7 @@ const styles={
     border:'none',
     borderRadius:'5%',
     height:'30px',
-    fontSize:'150%',
+    fontSize:'125%',
     color:'#142D53',
     margin:'0% 2%',
     ':hover': {
@@ -211,7 +211,7 @@ const styles={
     border:'none',
     borderRadius:'5%',
     height:'30px',
-    fontSize:'150%',
+    fontSize:'125%',
     color:'#142D53',
     margin:'0% 0%',
     ':hover': {
