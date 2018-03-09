@@ -53,7 +53,6 @@ class PromoBar extends Component{
           onClose={this.handleClose}
         >
           <div style={styles.dialogDiv}>
-
             <div>
               <p style={styles.dialogP}>
                 {promos[this.state.content].popup}
@@ -85,7 +84,8 @@ const styles={
     top: '0px',
     display: 'flex',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    zIndex:1000
 
   },
   button:{

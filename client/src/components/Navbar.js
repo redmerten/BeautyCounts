@@ -5,8 +5,16 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Icon} from 'react-fa'
 import Radium from 'radium'
-import Menu, { MenuItem } from 'material-ui/Menu';
-import Fade from 'material-ui/transitions/Fade';
+import ReactHoverObserver from 'react-hover-observer';
+
+import NavMenu from './NavMenu'
+//import Menu, { MenuItem } from 'material-ui/Menu';
+//import Fade from 'material-ui/transitions/Fade';
+
+
+//import {Menu, MenuItem, Popover  } from "@blueprintjs/core"
+//import @blueprintjs/core/lib/css/blueprint.css
+
 
 const links=[
   {link:"/productList/skinCare", label:'SKIN CARE',
@@ -20,25 +28,32 @@ const links=[
       'Sun Protection',
       'Sets & Collection']
   },
-  // {link:"/productList/makeUp", label:'MAKE UP'},
-  // {link:"/productList/bathbody", label:'BATH & BODY'},
-  // {link:"/productList/family", label:'FAMILY'},
-  // {link:"/productList/new", label:'NEW'},
-  // {link:"/productList/theNeverList", label:'THE NEVER LIST'},
-  // {link:"/productList/ourStory", label:'OUR STORY'},
-  // {link:"/productList/blog", label: 'THE ASTERISK BLOG'},
-
+  {link:"/productList/makeUp", label:'MAKE UP',menuItems:['Face', 'Eyes','Lips']},
+  {link:"/productList/bathbody", label:'BATH & BODY',menuItems:[]},
+  {link:"/productList/family", label:'FAMILY',menuItems:[]},
+  {link:"/productList/new", label:'NEW',menuItems:[]},
 ]
+const theNeverList= {link:"/productList/theNeverList", label:'THE NEVER LIST'}
+const theAsteriskBlog=  {link:"/productList/blog", label: 'THE ASTERISK BLOG'}
+const ourStory=  {link:"/productList/ourStory", label:'OUR STORY',menuItems:[]}
+
+
+
 
 class Navbar extends Component{
 
   state={
     menuOpen:false,
     anchorEl: null,
+    xPos:0,
+    yPos:0
   }
+
+
 
   openMenu=(e)=>{
     this.setState({menuOpen:true, anchorEl: e.currentTarget})
+    //console.log(e.currentTarget)
   }
 
   closeMenu=()=>{
@@ -46,16 +61,32 @@ class Navbar extends Component{
 
   }
 
-  handleMenuClick=(i)=>{
+  checkClick=(e)=>{
+    console.log(e.screenX, e.screenY)
+    this.setState({xPos:e.screenX,yPos:e.screenY, menuOpen:true})
 
   }
 
-  linkTo=()=>{
-
+  menu=()=>{
+    if (this.state.yPos !==0) {
+      console.log(this.state.xPos, this.state.yPos)
+      console.log('style', this.menuDiv.top)
+      return(
+        <div style = {{...this.menuDiv, 'top':this.state.yPos, 'left':this.state.xPos}}>
+          <p>
+            Hello
+          </p>
+        </div>
+      )
+    }
+    else return(
+     <div/>
+    )
   }
 
   render(){
-    console.log('open?', this.state.menuOpen)
+    //console.log('open?', this.state.menuOpen)
+
     return(
       <div style={styles.mainDiv}>
         <div style={styles.topDiv}>
@@ -82,47 +113,27 @@ class Navbar extends Component{
         </div>
 
         <div style={styles.bottomDiv}>
-          {links.map((l,i)=>{
-            return(
-              <div key={l.label}>
-                <button
-                  style={styles.bottomButton}
-                  key={l.label}
-                  //onClick={this.linkTo}
-                  onMouseEnter={(e)=>this.openMenu(e)}
-                  //onMouseLeave={()=>this.closeMenu()}
-                >
-                  {l.label}
-                </button>
-                <Menu
-                  id="fade-menu"
-                  anchorEl={this.state.anchorEl}
-                  open={this.state.menuOpen}
-                  onClose={()=>this.closeMenu()}
-                  transition={Fade}
-                >
-                  <MenuItem>
-                    <Link
-                      to={{ pathname: '/productList/all', state: { type: 'all'} }}
-                      onClick={()=>this.closeMenu()}
-                    >
-                      {l.label}
-                    </Link>
-                  </MenuItem>
-                  {l.menuItems.map((m,i)=>{
-                    return(
-                      <MenuItem
-                        onClick={(i)=>this.handleMenuClick(i)}
-                        key={m}
-                      >
-                        {m}
-                      </MenuItem>
-                    )})}
+           <NavMenu
+             navItem={links[0]}
+          />
+          <button
+            style={styles.bottomButton}
+            key={7}
+            onClick={(e)=>this.checkClick(e)}
+          >
+            <Link to="/">
+              {theNeverList.label}
+            </Link>
+          </button>
 
-                </Menu>
-              </div>
-            )
-          })}
+          <button
+            style={styles.bottomButton}
+            key={8}
+          >
+            <Link to="/">
+            {theAsteriskBlog.label}
+            </Link>
+          </button>
 
         </div>
       </div>
@@ -225,5 +236,6 @@ const styles={
     display:'flex',
     justifyContent:'space-between',
     alignItems:'center'
-  }
+  },
+
 }
