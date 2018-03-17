@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 //import Fade from 'material-ui/transitions/Fade';
 //import ReactHoverObserver from 'react-hover-observer';
 import {Nav, ButtonToolbar, NavDropdown, MenuItem, DropdownButton} from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap/dist/css/bootstrap.css'
 
 class NavMenu extends Component{
   state={
@@ -28,13 +28,13 @@ class NavMenu extends Component{
     return (
         <ButtonToolbar>
         <DropdownButton
-          bsStyle="default"
+          style={styles.bottomButton}
           title={item.label}
-          //onMouseEnter = { this.handleOpen }
-          //onMouseLeave = { this.handleClose }
-          //open={ this.state.isOpen }
+          onMouseEnter = { this.handleOpen }
+          onMouseLeave = { this.handleClose }
+          open={ this.state.isOpen }
           noCaret
-          id="dropdown-no-caret"
+          id="dropdown-no-caret"  //id provides for accessibility
         >
           <MenuItem>Hello</MenuItem>
         </DropdownButton>
@@ -47,7 +47,37 @@ class NavMenu extends Component{
 
 export default NavMenu
 
-
+const styles={
+  bottomButton:{
+    border:'none',
+    borderRadius:'5%',
+    height:'30px',
+    fontSize:'125%',
+    color:'#142D53',
+    margin:'0% 0%',
+    ':hover': {
+      backgroundColor: '#cdd6d9',
+      cursor: 'pointer'
+    }
+    //   a:hover {
+    // cursor:pointer;
+  },
+  bottomLinks:{
+    display:'flex',
+    justifyContent:'space-between',
+    alignItems:'center'
+  },
+  menuDiv:{
+    zIndex:2000,
+    backgroundColor:'#142D53',
+    color:'white',
+    width:'100px',
+    height:'100px',
+    position:'absolute',
+    top:222,
+    left:'2%'
+  }
+}
 /*
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  */
@@ -151,37 +181,7 @@ export default NavMenu
 
 export default NavMenu
 
-const styles={
-  bottomButton:{
-    border:'none',
-    borderRadius:'5%',
-    height:'30px',
-    fontSize:'125%',
-    color:'#142D53',
-    margin:'0% 0%',
-    ':hover': {
-      backgroundColor: '#cdd6d9',
-      cursor: 'pointer'
-    }
-    //   a:hover {
-    // cursor:pointer;
-  },
-  bottomLinks:{
-    display:'flex',
-    justifyContent:'space-between',
-    alignItems:'center'
-  },
-  menuDiv:{
-    zIndex:2000,
-    backgroundColor:'#142D53',
-    color:'white',
-    width:'100px',
-    height:'100px',
-    position:'absolute',
-    top:222,
-    left:'2%'
-  }
-}
+
 
 /*
  <Menu
